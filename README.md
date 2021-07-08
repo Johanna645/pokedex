@@ -1,3 +1,7 @@
+Work in progress...
+
+this will be a Pokedex - a collection of all Pokemons, where by clicking a name of a single Pokemon you'll get to see all the details of that specific Pokemon. Information will be fetched from pokeapi.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

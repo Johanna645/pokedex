@@ -1,6 +1,7 @@
 import logo from './logo.png';
-import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import Link from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
