@@ -1,7 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import Link from 'react';
 
-export function Details({ match: integer }) {
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  RouteComponentProps,
+} from 'react-router-dom';
+
+// React Router passes two props to all of its routed components: match props and location props.
+// The match-parameter is of type RouteComponentProps, the content of it will be here of type MatchProps. Even if id is a number, the React Router doesn't do type conversions and  declares the parameters as string or undefined.
+
+type MatchProps = { id: string };
+
+export function Details({ match }: RouteComponentProps<MatchProps>) {
   const {
     params: { id },
   } = match;

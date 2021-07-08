@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import Link from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Pokemons } from './Pokemons';
+import { Details } from './Details';
 
 function App() {
   return (
@@ -16,9 +18,13 @@ function App() {
         <div className="container-fluid">
           <div className="row">
             {/* map here   */}
-            <div className="col-xs-3">
-              {/* poke name here in some box, field, button,... */}
-            </div>
+            <Router>
+              <Route exact path="/" component={Pokemons} />
+              <div className="col-xs-3">
+                {/* poke name here in some box, field, button,... */}
+                <Route path="/pokemon/:id" component={Details} />
+              </div>
+            </Router>
           </div>
         </div>
       </main>
