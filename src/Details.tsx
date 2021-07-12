@@ -12,13 +12,42 @@ import {
 
 type MatchProps = { id: string };
 
+type Data = {
+  name: string;
+  abilities: [
+    {
+      is_hidden: boolean;
+      slot: number;
+      ability: { name: string; url: string };
+    },
+  ];
+  types: [{ slot: number; type: { name: string; url: string } }];
+  order: number;
+  stats: [
+    { base_stat: number; effort: number; stat: { name: string; url: string } },
+  ];
+  /*evolutions:,*/
+  moves: [
+    {
+      move: { name: string; url: string };
+      version_group_details: [
+        {
+          level_learned_at: number;
+          version_group: { name: string; url: string };
+          move_learn_method: { name: string; url: string };
+        },
+      ];
+    },
+  ];
+};
+
 export function Details({ match }: RouteComponentProps<MatchProps>) {
   const {
     params: { id },
   } = match;
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [data, setData] = useState<any>();
 
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`, {})
@@ -36,12 +65,36 @@ export function Details({ match }: RouteComponentProps<MatchProps>) {
       {!isLoading && (
         <>
           <h1>Name: {data.name}</h1>
-          <h2>Abilities: {data.abilities}</h2>
-          <h2>Type: {data.type}</h2>
+          <h2>Abilities: </h2>
+          <p>
+            {data.abilities &&
+              data.abilities
+                .map((ability: { name: string; url: string }) => ability.name)
+                .join(', ')}
+          </p>
+          <h2>Types: </h2>
+          <p>
+            {data.types &&
+              data.types
+                .map((type: { name: string; url: string }) => type.name)
+                .join(', ')}
+          </p>
           <h2>Order: {data.order}</h2>
-          <h2>Stats: {data.stats}</h2>
-          <h2>Evolutions: {data.evolutions}</h2> {/*this might be wrong*/}
-          <h2>Moves: {data.moves}</h2>
+          <h2>Stats: </h2>
+          <p>
+            {data.stats &&
+              data.stats
+                .map((stat: { name: string; url: string }) => stat.name)
+                .join(', ')}
+          </p>
+          <h2>Evolutions: </h2> {/*this needs to still be figured out*/}
+          <h2>Moves: </h2>
+          <p>
+            {data.moves &&
+              data.moves
+                .map((move: { name: string; url: string }) => move.name)
+                .join(', ')}
+          </p>
           <Link to="/">Back to main page</Link>
         </>
       )}

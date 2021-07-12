@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import Link from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  RouteComponentProps,
+} from 'react-router-dom';
 
 export function Pokemons() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [data, setData] = useState<any>();
 
   useEffect(() => {
-    fetch('https://', {})
+    fetch('https://pokeapi.co/api/v2/pokemon/?limit=10', {})
       .then((res) => res.json())
       .then((response) => {
         setData(response.results);
@@ -15,11 +20,10 @@ export function Pokemons() {
       .catch((error) => console.log(error));
   }, []);
 
-  // TODO fix the urls to be right
   return (
     <>
       {!isLoading &&
-        data.map((pokemon, index) => {
+        data.map((pokemon: any, index: number) => {
           return (
             <div key={index}>
               <Link to={`/pokemon/${index + 1}`}>{pokemon.name}</Link>
