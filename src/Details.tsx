@@ -69,14 +69,20 @@ export function Details({ match }: RouteComponentProps<MatchProps>) {
           <p>
             {data.abilities &&
               data.abilities
-                .map((ability: { name: string; url: string }) => ability.name)
+                .map(
+                  (abilityObject: { ability: { name: string; url: string } }) =>
+                    abilityObject.ability.name,
+                )
                 .join(', ')}
           </p>
           <h2>Types: </h2>
           <p>
             {data.types &&
               data.types
-                .map((type: { name: string; url: string }) => type.name)
+                .map(
+                  (typeObject: { type: { name: string; url: string } }) =>
+                    typeObject.type.name,
+                )
                 .join(', ')}
           </p>
           <h2>Order: {data.order}</h2>
@@ -84,7 +90,10 @@ export function Details({ match }: RouteComponentProps<MatchProps>) {
           <p>
             {data.stats &&
               data.stats
-                .map((stat: { name: string; url: string }) => stat.name)
+                .map(
+                  (statsObject: { stat: { name: string; url: string } }) =>
+                    statsObject.stat.name,
+                )
                 .join(', ')}
           </p>
           <h2>Evolutions: </h2> {/*this needs to still be figured out*/}
@@ -92,7 +101,10 @@ export function Details({ match }: RouteComponentProps<MatchProps>) {
           <p>
             {data.moves &&
               data.moves
-                .map((move: { name: string; url: string }) => move.name)
+                .map(
+                  (movesObject: { move: { name: string; url: string } }) =>
+                    movesObject.move.name,
+                )
                 .join(', ')}
           </p>
           <Link to="/">Back to main page</Link>
